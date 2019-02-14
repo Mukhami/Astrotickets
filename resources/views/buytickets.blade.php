@@ -1,5 +1,5 @@
 @extends('Layout.master')
-@section('title', 'Buy Tickets')
+@section('title', 'Purchase Tickets')
 @section('content')
 
     <div class="container-fluid">

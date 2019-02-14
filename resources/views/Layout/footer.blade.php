@@ -1,30 +1,28 @@
-<footer class="pink lighten-2 page-footer">
+<footer class="grey darken-1 page-footer">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Events and Tickets</h5>
-                <ul>
-                <li><a class="grey-text text-lighten-3" href="#">How to Purchase a Ticket</a> </li>
-                <li><a class="grey-text text-lighten-3" href="#">Refund Policy</a></li>
-                <li><a class="grey-text text-lighten-3" href="#">Terms of Use</a></li>
-                </ul>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h2 class="deep-purple-text text-darken-4">ASTROTICKETS</h2>
+                    <ul>
+                    <li><a class="grey-text text-lighten-3" href="#">How to Purchase a Ticket</a> </li>
+                    <li><a class="grey-text text-lighten-3" href="#">Refund Policy</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#">Terms of Use</a></li>
+                    </ul>
+        
             </div>
             <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Our Company</h5>
+                <h2 class="indigo-text text-darken-4">COMPANY DETAILS</h2>
                 <ul>
                     <li><a class="grey-text text-lighten-3" href="#!">About Us</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Frequently Asked Questions</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">How To Reach Us</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
+                    <li><a class="grey-text text-lighten-3" href="contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2018 Copyright, All Right Reserved
-            <a class="grey-text text-lighten-4 right" href="#!">More Life</a>
+            © 2018 Copyright, All Rights Reserved
+            <a class="grey-text text-lighten-4 right" href="#!">It's liiiiiiiiiiit</a>
         </div>
     </div>
 </footer>

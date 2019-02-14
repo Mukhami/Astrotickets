@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
+use App\Cart;
 use App\Category;
+use Session;
+
 class EventsController extends Controller
 {
     //show events

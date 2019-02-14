@@ -14,30 +14,28 @@
 
         <div class="col-sm-4" align="center">
             <address>
-                <p><b>Physical Address</b></p>
-                <p>Kenyatta University</p>
+                <p><b><i class="fas fa-map-marker-alt"></i> Physical Address</b></p>
+                <p>KENYATTA UNIVERSITY</p>
             </address>
 
             <address>
-                <p><b>Postal Address</b></p>
+                <p><b><i class="fab fa-mailchimp"></i> Postal Address</b></p>
                 <p>P.O Box
-                    43844-00100<br>
+                    1234-00100<br>
                     Nairobi, Kenya</p>
-                <p><b>Contacts</b></p>
-                <p>Phone/Whatsapp<br>0725-822 625<br>0713- 878 633</p>
-                <p>Email Address<br>info@kimtickets.com</p>
-                <p>Skype<br>#</p>
-                <p><a href="#"><i class="fa fa-facebook" style="color: dodgerblue">facebook</i></a></p>
+                <p><b><i class="fas fa-phone"></i> Contacts</b></p>
+                <p>Phone/Whatsapp<br>0725-730 055<br>0776-350 488</p>
+                <p>Email Address<br>astrotickets@gmail.com</p>
+               <b> <p><a href="#"><i class="fab fa-twitter-square"></i> Twitter</i></a></p> </b>
+                <b><p><a href="#"><i class="fab fa-facebook-square"></i> Facebook</i></a></p> </b>
+               <b> <p><a href="#"><i class="fab fa-instagram"></i> Instagram</i></a></p> </b>
             </address>
         </div>
     </div>
-
-
-    </section>  <!--/gmap_area -->
-
+    
     <section id="contact-page">
         <div class="container">
-            <h3 align="center"><b>Send Message</b></h3>
+            <h3 align="center"><b><i class="far fa-envelope"></i> Send Message</b></h3>
             <div class="row contact-wrap">
 
                 <form method="post" action="sendemail.php">
@@ -65,11 +63,11 @@
                             <textarea name="message" id="message" required class="form-control" rows="8"></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" class="waves-effect waves-light btn btn-lg" required value="Send Message">
+                            <input type="submit" name="submit" class="indigo waves-effect waves-light btn btn-lg" required value="Send Message">
                         </div>
                     </div>
                 </form>
-            </div><!--/.row-->
-        </div><!--/.container-->
+            </div>
+        </div>
     </section>
 @endsection

@@ -64,10 +64,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
-                                <button type="submit" class="btn waves-effect waves-light form-control">
-                                    {{ __('Register') }}
+                                <button type="submit" class="btn waves-effect waves-light form-control indigo">
+                                    <b>{{ __('Register') }}</b>
                                 </button>
                             </div>
+                            <p>ALREADY REGISTERED?<b><a href="login">Sign In here...</i></a></b></p>
                         </div>
                     </form>
                 </div>

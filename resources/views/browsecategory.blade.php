@@ -1,5 +1,5 @@
 @extends('Layout.master')
-@section('title', 'Events by Category')
+@section('title', 'Browse Events by Category')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -11,7 +11,7 @@
                 @endif
             </div>
             @if ($events->isEmpty())
-                <p> There is no Event.</p>
+                <p><b> THERE ARE NO EVENTS LISTED.</b></p>
             @else
                 @foreach($events as $event)
 
@@ -26,9 +26,9 @@
                             <div class="card-content">
                                 <p><b>Venue:</b> {!! $event->location !!}</p>
                                 <p><b>Date:</b> {!! $event->start_date !!}<br> from {!! $event->start_time !!} to {!! $event->end_time !!}</p>
-                                <p><b>Ticket Price:</b> Kshs.{!! $event->charges !!}</p>
+                                <p><b>Ticket Price:</b> KSHs.{!! $event->charges !!}</p>
                                 <div class="card-action">
-                                    <a href="/event/buytickets/{!! $event->slug !!}"><button class="pink lighten-3 waves-effect waves-light btn">Buy Tickets</button></a><br>
+                                    <a href="/event/buytickets/{!! $event->slug !!}"><button class="indigo waves-effect waves-light btn">Buy Tickets</button></a><br>
                                 </div>
                             </div>
                         </div>

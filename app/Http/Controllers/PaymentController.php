@@ -44,7 +44,7 @@ class PaymentController extends Controller
     }
     public function saveBillingData(Request $request)
     {
-        $user_id=uniqid();
+        $user_id=$request->user()->id;
     $charges=(int)$request->get('charges');
     $quantity=(int)$request->get('quantity');
     $total=$charges*$quantity;
@@ -54,6 +54,7 @@ class PaymentController extends Controller
         'charges'=>$total,
         'quantity'=>$quantity
     ));
+    
     $tickets->save();
         $users=new UsersMetum(array(
             'user_id'=>$user_id,
@@ -118,7 +119,7 @@ class PaymentController extends Controller
 
             } else {
 
-                \Session::put('error', 'Some error occur, sorry for inconvenient');
+                \Session::put('error', 'Some error occured, sorry for inconvenient');
                 return Redirect::to('/');
 
             }
@@ -175,6 +176,7 @@ class PaymentController extends Controller
         if ($result->getState() == 'approved') {
 
             \Session::put('success', 'Payment success');
+            
             return Redirect::to('/');
 
         }
