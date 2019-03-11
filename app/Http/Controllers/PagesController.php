@@ -11,4 +11,17 @@ class PagesController extends Controller
     {
         return view('contact');
     }
+
+    //Checkout Page
+    public function checkout()
+    {
+        return view('checkout');
+    }
+
+    //Reports Page
+    public function reports()
+    {
+        return view('reports');
+    }
+
 }

@@ -9,16 +9,16 @@
                     <div class="card-image float-left">
                         <img src='{!! Voyager::image( $event->event_poster ) !!}' style="width: 100%; height: auto">
                     </div>
-                    <h3> {!! $event->name !!}</h3>
-                    <p>{!! $event->location !!}</p>
-                    <p>{!! $event->start_date!!}<br> from {!! $event->start_time !!} to {!! $event->end_time !!}</p>
-                    <br>
-                    <p>Kshs.{!! $event->charges !!} per Ticket</p>
+                    <h2><b>{!! $event->name !!}</b></h2>
+                    <p><b><i class="fas fa-map-marker-alt"></i> Event Venue:</b> {!! $event->location !!}</p>
+                    <p><b><i class="fas fa-calendar-week"></i> Date:</b> {!! $event->start_date!!}</p>
+                    <p><b><i class="far fa-clock"></i> Time:</b> {!! $event->start_time !!} to {!! $event->end_time !!}</p>
+                    <p><b><i class="fas fa-money-bill-wave"></i> Charges:</b> Kshs.{!! $event->charges !!} per Ticket</p>
                 </div>
             </div>
             <div class="card col m5 s12">
                 <div class="panel-heading">
-                    <p><b>Enter Details: </b></p>
+                    <p><b>Enter Ticket Details: </b></p>
                 </div>
                 <div class="panel-body">
                     {!! Form::open(['url'=>'saveBillingData']) !!}
@@ -32,15 +32,19 @@
                     @endif
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <input type="hidden" name="event_id" value=" {!! $event->id !!}">
+                    <input type="hidden" name="event_name" value=" {!! $event->name !!}">
                     <input type="hidden" name="charges" value=" {!! $event->charges !!}">
+                    
                     <fieldset>
                         <div class="form-group">
-                            {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name', null, ['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('name', 'Names:') !!}
+                            <input type="text" name="name" value=" {!! $user->name !!}">
+                            
                         </div>
                         <div class="form-group">
                             {!! Form::label('email', 'Email:') !!}
-                            {!! Form::email('email', null, ['class'=>'form-control', 'required']) !!}
+                            <input type="text" name="email" value=" {!! $user->email !!}">
+                            
                         </div>
                         <div class="form-group">
                             {!! Form::label('phone', 'Phone:') !!}
@@ -51,7 +55,8 @@
                             {!! Form::number('quantity', null, ['class'=>'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::submit('Proceed To Checkout', ['class'=>'waves-effect waves-light btn form-control']) !!}
+                            {!! Form::submit('Proceed To Pay', ['class'=>'waves-effect waves-light btn form-control indigo']) !!}
+
                         </div>
                     </fieldset>
                     {!! Form::close() !!}

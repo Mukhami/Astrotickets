@@ -1,29 +1,14 @@
 @extends('Layout.master')
 @section('title', 'AstroTickets')
 @section('content')
-<div class="carousel carousel-slider center">
-    <div class="carousel-fixed-item center">
-      <a class="btn waves-effect white indigo-text darken-text-2"><b>Browse Category</b></a>
-    </div>
-    <div class="carousel-item red white-text" href="#one!">
-      <h2>First Panel</h2>
-      <p class="white-text">This is your first panel</p>
-    </div>
-    <div class="carousel-item amber white-text" href="#two!">
-      <h2>Second Panel</h2>
-      <p class="white-text">This is your second panel</p>
-    </div>
-    <div class="carousel-item green white-text" href="#three!">
-      <h2>Third Panel</h2>
-      <p class="white-text">This is your third panel</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-      <h2>Fourth Panel</h2>            
-      <p class="white-text">This is your fourth panel</p>
-    </div>
-  </div>
+      
+    <div class="container">       <!-- Category section top of page -->
+       <div class="col s12 m6 l4">
+                @include('categories') 
+            </div>
+     </div>
  
-    <div class="container-fluid">
+    <div class="container-fluid">       
         @if ($message = Session::get('success'))
              <div class="alert alert-success">
                   <span onclick="this.parentElement.style.display='none'"
@@ -49,19 +34,26 @@
                 @endif
             </div>
             @if ($events->isEmpty())
-                <p> There is no Event listed.</p>
+                <p><b> There is no Event listed.</b></p>
             @else
                 @foreach($events as $event)
                     <div class="col s12 m12 l3 xl3">
-                        <div class="card">
+                        <div class="card hoverable">
                             <div class="card-image">
                                 <a href="/event/{!! $event->slug !!}"><img class="responsive-img" src='{!! Voyager::image( $event->event_poster ) !!}' style="width: 100%; height: 30%"></a>
+                                @if($event->number_of_tickets > 10) <span class="label label-success">Available </span>
+                                @elseif($event->number_of_tickets < 10 && $event->number_of_tickets > 0) <span class="label label-warning">Running Out </span>
+                                @else <span class="label label-danger"> SOLD OUT!</span>
+                                @endif 
+
                                 <form action="cart" method="POST">
                                 {!! csrf_field() !!}
                                <input type="hidden" name="id" value="{{ $event->id}}">
                                <input type="hidden" name="name" value="{{ $event->name}}">
-                               <input type="hidden" name="charges" value="{{ $event->charges}}"> 
+                               <input type="hidden" name="charges" value="{{ $event->charges}}">
+                               @if($event->number_of_tickets > 0) 
                                 <button type="submit" class="halfway-fab btn-floating indigo pulse"><i class="material-icons">add_shopping_cart</i></button>
+                                @endif
                                 </form>
                             </div>
                             <div align="centre"> 
@@ -76,18 +68,14 @@
                                 </ul>
                              </div>
                                 <div class="card-action">
+                                @if($event->number_of_tickets > 0)
                                     <a href="/event/buytickets/{!! $event->slug !!}"><button class="indigo darken- waves-effect waves-light btn">Purchase Ticket</button></a>
+                                @endif
                                 </div>
                             </div>
-                     
                 </div>
                 @endforeach
             @endif
-        </div>
-                <div class="container">
-                <div class="col s12 m6 l4">
-                @include('categories') 
-            </div>
         </div>
     </div>
 @endsection

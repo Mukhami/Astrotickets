@@ -3,11 +3,16 @@ namespace App\Http\Controllers;
 
 use App\Ticket;
 use App\UsersMetum;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+use App\PaypalPayment;
+use App\Mail\OrderPlaced;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /** All Paypal Details class **/
 use PayPal\Api\ItemList;
@@ -48,9 +53,14 @@ class PaymentController extends Controller
     $charges=(int)$request->get('charges');
     $quantity=(int)$request->get('quantity');
     $total=$charges*$quantity;
+
+    $ticket_id=uniqid();
+    $event_id=$request->get('event_id');
+    $event_name=$request->get('event_name');
     $tickets=new Ticket(array(
         'user_id'=>$user_id,
-        'event_id'=>$request->get('event_id'),
+        'ticket_id' =>$ticket_id,
+        'event_id'=>$event_id,
         'charges'=>$total,
         'quantity'=>$quantity
     ));
@@ -65,7 +75,7 @@ class PaymentController extends Controller
 
 
         $users->save();
-        return redirect('/ticketpurchase')->with('charges', $total);
+        return redirect('/ticketpurchase')->with(['charges'=>$total, 'Event'=>$event_name]);
     }
     public function index()
     {
@@ -79,7 +89,7 @@ class PaymentController extends Controller
 
         $item_1 = new Item();
 
-        $item_1->setName('Tickets') /** item name **/
+        $item_1->setName($request->get('event')) /** item name **/
         ->setCurrency('USD')
             ->setQuantity(1)
             ->setPrice($request->get('amount')); /** unit price **/
@@ -105,7 +115,7 @@ class PaymentController extends Controller
             ->setPayer($payer)
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
-        /** dd($payment->create($this->_api_context));exit; **/
+        
         try {
 
             $payment->create($this->_api_context);
@@ -119,7 +129,7 @@ class PaymentController extends Controller
 
             } else {
 
-                \Session::put('error', 'Some error occured, sorry for inconvenient');
+                \Session::put('error', 'Some error occurred, sorry for the inconvenience, please proceed to contact site Admin');
                 return Redirect::to('/');
 
             }
@@ -174,14 +184,62 @@ class PaymentController extends Controller
         $result = $payment->execute($execution, $this->_api_context);
 
         if ($result->getState() == 'approved') {
+            //transaction data
+            $txn_id = $result->id;
+            $state = $result->state;
+            $payerFirstName = $result->payer->payer_info->first_name;
+            $payerLastName = $result->payer->payer_info->last_name;
+            $payerName = $payerFirstName.' '.$payerLastName;
+            $payerID = $result->payer->payer_info->payer_id;
+            $payerEmail = $result->payer->payer_info->email;
+            $payerCountryCode = $result->payer->payer_info->country_code;
+            $paidAmount = $result->transactions[0]->amount->total;
+            $currency = $result->transactions[0]->amount->currency;
 
-            \Session::put('success', 'Payment success');
+            $cartItems=Cart::content();
+            $ticket_id=uniqid();
+            $user_id=Auth::user()->id;
+
+            // save order data
+            foreach ($cartItems as $item){
+                $order = new Ticket(array(
+                    'ticket_id' =>$ticket_id,
+                    'event_id' =>$item->model->id,
+                    'quantity' =>$item->qty,
+                    'charges' =>$item->charges,
+                    'user_id' =>$user_id
+                ));
+                $order->save();
+            }
+
+            //save payment data to DB
+            $paymentdata=new PaypalPayment(array(
+                'user_id'=>$user_id,
+                'ticket_id'=>$ticket_id,
+                'txn_id'=>$txn_id,
+                'payment_gross'=>$paidAmount,
+                'currency_code'=>$currency,
+                'payer_id'=>$payerID,
+                'payer_name'=>$payerName,
+                'payer_email'=>$payerEmail,
+                'payer_country'=>$payerCountryCode,
+                'payment_status'=>$state
+            ));
+            $paymentdata->save();
+            
+            //sends order email after successful ticket purchase
+            Mail::send(new OrderPlaced);
+
+
+            //destroy cart session
+            Cart::destroy();
+            Session::put('success', 'Payment made successfully, check registered email for purchased ticket(s)');
             
             return Redirect::to('/');
 
         }
 
-        \Session::put('error', 'Payment failed');
+        \Session::put('error', 'Payment failed, Contact Admin for help');
         return Redirect::to('/');
 
     }

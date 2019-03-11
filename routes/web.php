@@ -12,9 +12,11 @@
 */
 
 Route::get('/', 'EventsController@events')->name('events');//displays all events
-Route::get('/contact', 'PagesController@contact');//shows Contact Us page
 Route::get('events/category/{slug}', 'EventsController@browsecategory');//browse by category page
 Route::get('event/{slug}', 'EventsController@event');//show single event
+Route::get('/contact', 'PagesController@contact');//shows Contact Us page
+Route::get('/checkout', 'PagesController@checkout');//shows checkout page
+Route::get('/reports', 'PagesController@reports');//shows reports page
 
 //cart
 Route::get('cart', 'CartController@index')->name('cart');
@@ -25,7 +27,8 @@ Route::post('removeitem', 'CartController@remove');
 Route::group(['middleware'=>'auth'], function(){
 Route::get('event/buytickets/{slug}', function($slug){
     $event = App\Event::where('slug', '=', $slug)->firstOrFail();
-    return view('buytickets', compact('event'));
+    $user = auth()->user();
+    return view('buytickets', compact('event','user'));
 });
 });
 Route::post('saveBillingData', 'PaymentController@saveBillingData');
@@ -41,7 +44,8 @@ Route::post('paypal', 'PaymentController@payWithpaypal');
 Route::get('status', 'PaymentController@getPaymentStatus');
 
 //route for viewing profile
-Route::get('user/{id}', 'UsersController@index');
+Route::get('user', 'UsersController@index');
+
 //Route for editing profile
 Route::get('user/{id}/edit', 'UsersController@showedit');
 

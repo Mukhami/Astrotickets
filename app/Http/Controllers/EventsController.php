@@ -8,12 +8,11 @@ use App\Category;
 use Session;
 
 class EventsController extends Controller
-{
-    //show events
+{   //show events
     public function events()
     {
         $events = Event::all();
-        $categories= Category::limit(4)->get();
+        $categories= Category::limit(4)->get();      
         return view('index', compact('events','categories'));
     }
     //show single event

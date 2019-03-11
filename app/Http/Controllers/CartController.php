@@ -29,7 +29,7 @@ class CartController extends Controller
         $cartItem = Cart::add($request->id, $request->name, 1, $request->charges);
         Cart::associate($cartItem->rowId, 'App\Event');
 
-        return redirect()->back()->with('status', $item.' '.'item has successfully been added to cart');
+        return redirect()->back()->with('status', $item.' '.'has successfully been added to cart');
         
     }
 
@@ -44,7 +44,7 @@ class CartController extends Controller
         //remove item from the cart
         Cart::remove($request->rowId);
         
-        return redirect()->back()->with('status', 'Item has successfilly been removed from the cart');
+        return redirect()->back()->with('status', 'Item has successfully been removed from the cart');
     }
 
     /**

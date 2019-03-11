@@ -43,14 +43,11 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-12">
+                            <div class="">
+                               <b> <p>NEW USER? <a href="register"> Register here...</i></a></b></p>
                                 <button type="submit" class="waves-effect waves-light btn form-control indigo">
                                     {{ __('LOGIN') }}
                                 </button>
-
-                                <p>NEW USER?</p><b> <p><a href="register">Register here...</i></a></p> </b>
-
-
                             </div>
                         </div>
                     </form>

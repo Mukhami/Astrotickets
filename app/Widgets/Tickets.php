@@ -32,7 +32,7 @@ class Tickets extends BaseDimmer
                 'text' => 'Browse all Tickets',
                 'link' => route('voyager.tickets.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/05.jpg'),
+            'image' => voyager_asset('images/widget-backgrounds/06.jpg'),
         ]));
     }
 
