@@ -7,10 +7,6 @@ nav .badge{
     top: 25px;
     left: -25px;
 }
-nav .input-field{
-    position: relative;
-    left:750px ;
-}
 </style>
 <div class="navbar-fixed">
 <nav class="indigo lighten-2">
@@ -24,15 +20,6 @@ nav .input-field{
                     <span class="icon-bar"></span>
                  </button>
                 <a class="brand-logo" href="/"><i class="fas fa-user-astronaut white-text fa-2x"></i>ASTROTICKETS</a>
-        
-        <!-- Search field -->
-         <div class="input-field">
-                 <input id="search" type="search" placeholder="Search" required>
-                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-        </div>
-
-
             </div>
             <!-- Navbar Right -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,7 +40,7 @@ nav .input-field{
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="user">PROFILE</a> </li>
+                                <li><a href="user">MY ACCOUNT</a> </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

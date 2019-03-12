@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
 use Illuminate\Http\Request;
 use App\Event;
 use App\Cart;
@@ -27,5 +29,15 @@ class EventsController extends Controller
         $events = Event::where('cat_id', '=', $slug)->get();
         $categories= Category::limit(4)->get();
         return view('browsecategory', compact('events','categories'));
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $events = Event::where('name', 'like', "%$query%")
+                        ->orWhere('description', 'like', "%$query%")
+                        ->orWhere('location', 'like', "%$query%")
+                        ->orWhere('guests', 'like', "%$query%")
+                        ->get();
+        return view('search-results', compact('query', 'events'));
     }
 }

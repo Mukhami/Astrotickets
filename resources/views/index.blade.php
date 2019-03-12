@@ -1,13 +1,25 @@
 @extends('Layout.master')
 @section('title', 'AstroTickets')
 @section('content')
-      
+
+
     <div class="container">       <!-- Category section top of page -->
        <div class="col s12 m6 l4">
-                @include('categories') 
+           @include('categories')
             </div>
      </div>
- 
+
+
+    <!-- Search field -->
+    <div class="container align-content-center">
+        <hr>
+             <form action="{{ route('search') }}" method="GET" class="search-form" >
+                 <i class="fa fa-search search-icon fa-lg"></i>
+                   <input  type="'text" id="query" name="query" type="query" value="{{ request()->input('query') }}" style="height:40px; text-align: left; width:550px;" placeholder=" Search for an Event" required>
+             </form>
+        <hr>
+    </div>
+
     <div class="container-fluid">       
         @if ($message = Session::get('success'))
              <div class="alert alert-success">

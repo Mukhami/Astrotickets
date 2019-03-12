@@ -2,6 +2,23 @@
 @section('title', 'User')
 @section('content')
     <div class="container">
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+                  <span onclick="this.parentElement.style.display='none'"
+                        class="Button--success">&times;</span>
+            <p>{!! $message !!}</p>
+        </div>
+        <?php Session::forget('success');?>
+    @endif
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger">
+        <span onclick="this.parentElement.style.display='none'"
+              class="button-red">&times;</span>
+            <p>{!! $message !!}</p>
+        </div>
+        <?php Session::forget('error');?>
+    @endif
+
         <div class="row">
         <u><b><h2>MY PROFILE</h2></b></u><br>
             <b><p> Name: {!! $user->name !!}</p>
@@ -9,7 +26,7 @@
         </div>
         <u><b><h2>MY TICKET PURCHASES</h2></b></u><br>
         <div>
-        <table class="highlight centered responsive-table grey lighten-2">
+        <table class="table table-striped table-hover">
         <thead>
           <tr>
               <th>Ticket Number</th>

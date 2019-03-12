@@ -8,6 +8,13 @@
 </head>
 <body>
     BOW WOWOW YIPPIE YOH YIPPIE YEEYYY
-    
+
+
+    <p> {!! $ticket->ticket_id !!}</p>
+    <p> {!! $ticket->event->name !!}</p>
+    <p> {!! $ticket->event->start_date !!}</p>
+    <p> {!! $ticket->quantity !!}</p>
+    <p> {!! $ticket->charges !!}</p>
+
 </body>
 </html>

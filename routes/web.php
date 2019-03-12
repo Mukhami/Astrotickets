@@ -18,6 +18,9 @@ Route::get('/contact', 'PagesController@contact');//shows Contact Us page
 Route::get('/checkout', 'PagesController@checkout');//shows checkout page
 Route::get('/reports', 'PagesController@reports');//shows reports page
 
+//search for an event
+Route::get('/search', 'EventsController@search')->name('search');
+
 //cart
 Route::get('cart', 'CartController@index')->name('cart');
 Route::post('cart', 'CartController@store');

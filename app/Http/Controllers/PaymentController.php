@@ -235,7 +235,7 @@ class PaymentController extends Controller
             Cart::destroy();
             Session::put('success', 'Payment made successfully, check registered email for purchased ticket(s)');
             
-            return Redirect::to('/');
+            return Redirect::to('/user');
 
         }
 
