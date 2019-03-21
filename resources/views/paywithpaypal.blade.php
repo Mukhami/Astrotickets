@@ -1,16 +1,9 @@
-<?php 
-$count = Cart::count();
-$items = Cart::content();
-$subtotal = Cart::subtotal();
-?>
 @extends('Layout.master')
-@section('title', 'Paypal')
+@section('title', 'Proceed to Paypal')
 @section('content')
     <div class="container">
         <div class="row">
                 <div class="card" align="center">
-                                <p><b><h3>Pay with PayPal</h3></p>
-                                <p>{{$subtotal}}</p></b>
                             <div class="panel-body">
                                 {!! Form::open(['url'=>'paypal']) !!}
                                 @foreach ($errors->all() as $error)
@@ -21,10 +14,13 @@ $subtotal = Cart::subtotal();
                                     @if (session('charges'))
                                     <div class="form-group">
                                         <label for="amount">
-                                            Total Charges
+                                            Total Charges:
+                                            Event Name:
                                         </label>
                                         <input type="number" name="amount" value="{!! session('charges') !!}" required readonly>
                                         <input type="text" name="event" value="{!! session('Event') !!}" required readonly>
+                                        <input type="text" name="event_id" value="{!! session('Event_id') !!}" hidden required readonly>
+                                        <input type="text" name="quantity" value="{!! session('quantity') !!}" hidden required readonly>
                                     </div>
                                     @endif
                                     <div class="form-group">

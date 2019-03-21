@@ -53,29 +53,18 @@ class PaymentController extends Controller
     $charges=(int)$request->get('charges');
     $quantity=(int)$request->get('quantity');
     $total=$charges*$quantity;
-
-    $ticket_id=uniqid();
     $event_id=$request->get('event_id');
     $event_name=$request->get('event_name');
-    $tickets=new Ticket(array(
-        'user_id'=>$user_id,
-        'ticket_id' =>$ticket_id,
-        'event_id'=>$event_id,
-        'charges'=>$total,
-        'quantity'=>$quantity
-    ));
-    
-    $tickets->save();
+
         $users=new UsersMetum(array(
             'user_id'=>$user_id,
             'name' =>$request->get('name'),
             'email'=>$request->get('email'),
             'phone'=>$request->get('phone'),
         ));
-
-
         $users->save();
-        return redirect('/ticketpurchase')->with(['charges'=>$total, 'Event'=>$event_name]);
+        return redirect('/ticketpurchase')->with(['charges'=>$total, 'Event'=>$event_name, 'Event_id'=>$event_id, 'quantity'=>$quantity]);
+
     }
     public function index()
     {
@@ -86,10 +75,12 @@ class PaymentController extends Controller
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
+        $event_id=$request->get('event_id');
+        $quantity=$request->get('quantity');
 
         $item_1 = new Item();
 
-        $item_1->setName($request->get('event')) /** item name **/
+        $item_1->setName($request->get('event')) /** event name **/
         ->setCurrency('USD')
             ->setQuantity(1)
             ->setPrice($request->get('amount')); /** unit price **/
@@ -107,7 +98,7 @@ class PaymentController extends Controller
             ->setDescription('Your transaction description');
 
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
+        $redirect_urls->setReturnUrl(URL::to('status/'.$event_id.'/'.$quantity)) /** Specify return URL **/
         ->setCancelUrl(URL::to('status'));
 
         $payment = new Payment();
@@ -162,7 +153,7 @@ class PaymentController extends Controller
 
     }
 
-    public function getPaymentStatus()
+    public function getPaymentStatus($event_id, $quantity)
     {
         /** Get the payment ID before session clear **/
         $payment_id = Session::get('paypal_payment_id');
@@ -196,26 +187,27 @@ class PaymentController extends Controller
             $paidAmount = $result->transactions[0]->amount->total;
             $currency = $result->transactions[0]->amount->currency;
 
-            $cartItems=Cart::content();
+
             $ticket_id=uniqid();
             $user_id=Auth::user()->id;
 
-            // save order data
-            foreach ($cartItems as $item){
+
+            // save order data to Titec
                 $order = new Ticket(array(
                     'ticket_id' =>$ticket_id,
-                    'event_id' =>$item->model->id,
-                    'quantity' =>$item->qty,
-                    'charges' =>$item->charges,
+                    'event_id' =>$event_id,
+                    'quantity' =>$quantity,
+                    'charges' =>$paidAmount,
                     'user_id' =>$user_id
                 ));
                 $order->save();
-            }
+
 
             //save payment data to DB
             $paymentdata=new PaypalPayment(array(
                 'user_id'=>$user_id,
                 'ticket_id'=>$ticket_id,
+                'event_id' =>$event_id,
                 'txn_id'=>$txn_id,
                 'payment_gross'=>$paidAmount,
                 'currency_code'=>$currency,
@@ -228,11 +220,9 @@ class PaymentController extends Controller
             $paymentdata->save();
             
             //sends order email after successful ticket purchase
-            Mail::send(new OrderPlaced);
+            Mail::send(new OrderPlaced($order));
 
 
-            //destroy cart session
-            Cart::destroy();
             Session::put('success', 'Payment made successfully, check registered email for purchased ticket(s)');
             
             return Redirect::to('/user');

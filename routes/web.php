@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 
 */
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');//verified user route
 
 Route::get('/', 'EventsController@events')->name('events');//displays all events
 Route::get('events/category/{slug}', 'EventsController@browsecategory');//browse by category page
@@ -17,14 +18,29 @@ Route::get('event/{slug}', 'EventsController@event');//show single event
 Route::get('/contact', 'PagesController@contact');//shows Contact Us page
 Route::get('/checkout', 'PagesController@checkout');//shows checkout page
 Route::get('/reports', 'PagesController@reports');//shows reports page
+Route::get('/instructions', 'PagesController@instructions');//shows reports page
+
+Route::get('/verify/{token}', 'VerifyController@verify')->name('verify');//verify registered users
+
+//qr-code test
+Route::get('qrcode', function () {
+    $image = QrCode::format('png')
+        ->color(255, 0, 127)
+        ->size(500)
+        ->generate("jjjjppppp");
+
+    return response($image)->header('Content-type','image/png');
+});
 
 //search for an event
 Route::get('/search', 'EventsController@search')->name('search');
 
-//cart
-Route::get('cart', 'CartController@index')->name('cart');
-Route::post('cart', 'CartController@store');
-Route::post('removeitem', 'CartController@remove');
+//bookmarking routes
+Route::group(['middleware'=>'auth'], function() {
+    Route::get('bookmark/{id}', 'bookmarksController@create')->name('bookmark');//add to bookmarks db
+    Route::get('bookmarks', 'bookmarksController@index')->name('bookmarks');//show bookmarks view
+    Route::get('delete_bookmark/{id}', 'bookmarksController@destroy')->name('delete_bookmark');//show bookmarks view
+});
 
 //buy tickets
 Route::group(['middleware'=>'auth'], function(){
@@ -44,7 +60,7 @@ Route::get('ticketpurchase', 'PaymentController@index');
 Route::post('paypal', 'PaymentController@payWithpaypal');
 
 // route for check status of the payment
-Route::get('status', 'PaymentController@getPaymentStatus');
+Route::get('status/{event_id}/{quantity}', 'PaymentController@getPaymentStatus');
 
 //route for viewing profile
 Route::get('user', 'UsersController@index');

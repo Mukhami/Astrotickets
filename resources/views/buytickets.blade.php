@@ -18,7 +18,7 @@
             </div>
             <div class="card col m5 s12">
                 <div class="panel-heading">
-                    <p><b>Enter Ticket Details: </b></p>
+                    <p><b>Confirm Ticket Details: </b></p>
                 </div>
                 <div class="panel-body">
                     {!! Form::open(['url'=>'saveBillingData']) !!}
@@ -34,7 +34,7 @@
                     <input type="hidden" name="event_id" value=" {!! $event->id !!}">
                     <input type="hidden" name="event_name" value=" {!! $event->name !!}">
                     <input type="hidden" name="charges" value=" {!! $event->charges !!}">
-                    
+
                     <fieldset>
                         <div class="form-group">
                             {!! Form::label('name', 'Names:') !!}
@@ -48,11 +48,11 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('phone', 'Phone:') !!}
-                            {!! Form::number('phone', null, ['class'=>'form-control', 'required']) !!}
+                            <input type="text" name="email" value=" {!! $user->phone_number !!}">
                         </div>
                         <div class="form-group">
                             {!! Form::label('quantity', 'Number of Tickets:') !!}
-                            {!! Form::number('quantity', null, ['class'=>'form-control', 'required']) !!}
+                            {!! Form::number('quantity', null, ['class'=>'form-control', 'required', 'min=1', 'max=10']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::submit('Proceed To Pay', ['class'=>'waves-effect waves-light btn form-control indigo']) !!}

@@ -19,21 +19,21 @@ nav .badge{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                  </button>
-                <a class="brand-logo" href="/"><i class="fas fa-user-astronaut white-text fa-2x"></i>ASTROTICKETS</a>
+                <a class="brand-logo" href="/" data-toggle="tooltip" title="Home"><i class="fas fa-user-astronaut white-text fa-2x"></i>ASTROTICKETS</a>
             </div>
             <!-- Navbar Right -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="right">
                     <li>                     
-                        <li><a href="contact">CONTACT US</a></li>                        
+                        <li><a href="contact"  data-toggle="tooltip" title="contact us">CONTACT US</a></li>
                     </li>
 
                     <!-- Authentication Links -->
                     @guest
                     <li>
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('LOGIN') }}</a></li>
+                        <a class="nav-link" href="{{ route('login') }}"  data-toggle="tooltip" title="login">{{ __('LOGIN') }}</a></li>
                     <li>
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTER') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}"  data-toggle="tooltip" title="register">{{ __('REGISTER') }}</a>
                     </li>
                     @else
                         <li>
@@ -54,13 +54,9 @@ nav .badge{
                             </ul>
                         </li>
                         @endguest
-                    <li><a href="cart" class="btn-floating indigo z-depth-0">
-                        <i class="material-icons white-text">shopping_cart</i></a>
-                        
-                        @if($itemscount>0)
-                        <span class="badge white"><b> <?php echo $itemscount ?> item(s)</b></span>
-                        @endif
-                        </li>
+
+                    <li><a href="{{ route('bookmarks') }}" class="btn-floating indigo z-depth-0"  data-toggle="tooltip" title="view bookmarked events">
+                            <i class="tiny material-icons">bookmark_border</i></a></li>
                 </ul>
             </div>
         </div>

@@ -18,6 +18,7 @@ class CreatePaypalPaymentsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('ticket_id');
+            $table->integer('event_id')->unsigned();
             $table->string('txn_id');
             $table->float('payment_gross', 10, 2);
             $table->string('currency_code', 5);

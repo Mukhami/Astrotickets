@@ -29,6 +29,7 @@
         <table class="table table-striped table-hover">
         <thead>
           <tr>
+              <th>Date of purchase</th>
               <th>Ticket Number</th>
               <th>Event Name</th>
               <th>Event Date</th>
@@ -40,6 +41,7 @@
         <tbody>
         @foreach($tickets as $ticket)
         <tr>
+            <td> {!! $ticket->created_at !!}</td>
             <td> {!! $ticket->ticket_id !!}</td>
             <td> {!! $ticket->event->name !!}</td>
             <td> {!! $ticket->event->start_date !!}</td>

@@ -24,4 +24,10 @@ class PagesController extends Controller
         return view('reports');
     }
 
+    //Reports Page
+    public function instructions()
+    {
+        return view('instructions');
+    }
+
 }

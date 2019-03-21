@@ -383,8 +383,8 @@ define(
     var DOM = DOMUtils.DOM;
 
     /**
-     * Returns a range bookmark. This will convert indexed bookmarks into temporary span elements with
-     * index 0 so that they can be restored properly after the DOM has been modified. Text bookmarks will not have spans
+     * Returns a range bookmark. This will convert indexed bookmark into temporary span elements with
+     * index 0 so that they can be restored properly after the DOM has been modified. Text bookmark will not have spans
      * added to them since they can be restored after a dom operation.
      *
      * So this: <p><b>|</b><b>|</b></p>

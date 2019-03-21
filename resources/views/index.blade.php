@@ -3,8 +3,8 @@
 @section('content')
 
 
-    <div class="container">       <!-- Category section top of page -->
-       <div class="col s12 m6 l4">
+    <div class="container"> <!-- Category section top of page -->
+       <div class="col-xs-12 col-m6 col-l4">
            @include('categories')
             </div>
      </div>
@@ -20,7 +20,9 @@
         <hr>
     </div>
 
-    <div class="container-fluid">       
+
+<!-- Section for error/success messages-->
+    <div class="container-fluid">
         @if ($message = Session::get('success'))
              <div class="alert alert-success">
                   <span onclick="this.parentElement.style.display='none'"
@@ -45,8 +47,15 @@
                     </div>
                 @endif
             </div>
+
+
+            <!-- Lists Events-->
             @if ($events->isEmpty())
-                <p><b> There is no Event listed.</b></p>
+                <div class="container">
+                    <div class="col-xs-12 col-m6 col-l4">
+                         <p><b> There is no Event listed.</b></p>
+                    </div>
+                </div>
             @else
                 @foreach($events as $event)
                     <div class="col s12 m12 l3 xl3">
@@ -58,15 +67,16 @@
                                 @else <span class="label label-danger"> SOLD OUT!</span>
                                 @endif 
 
-                                <form action="cart" method="POST">
-                                {!! csrf_field() !!}
-                               <input type="hidden" name="id" value="{{ $event->id}}">
-                               <input type="hidden" name="name" value="{{ $event->name}}">
-                               <input type="hidden" name="charges" value="{{ $event->charges}}">
                                @if($event->number_of_tickets > 0) 
-                                <button type="submit" class="halfway-fab btn-floating indigo pulse"><i class="material-icons">add_shopping_cart</i></button>
+                                <a href="{{route('bookmark',['id'=>$event->id])}}">
+                                    <button type="submit" class="halfway-fab btn-floating indigo pulse" data-toggle="tooltip" title="add to bookmarks">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                </a>
                                 @endif
-                                </form>
+
+
+
                             </div>
                             <div align="centre"> 
                             <span class="card-title">{!! $event->name !!}</span>
@@ -81,13 +91,21 @@
                              </div>
                                 <div class="card-action">
                                 @if($event->number_of_tickets > 0)
-                                    <a href="/event/buytickets/{!! $event->slug !!}"><button class="indigo darken- waves-effect waves-light btn">Purchase Ticket</button></a>
+                                    <a href="/event/buytickets/{!! $event->slug !!}"><button class="indigo darken- waves-effect waves-light btn" data-toggle="tooltip" title="purchase ticket" >Purchase Ticket</button></a>
                                 @endif
                                 </div>
                             </div>
-                </div>
+                         </div>
                 @endforeach
             @endif
         </div>
+
+            <!-- Pagination Links -->
+
+            <div class="container text-center">
+            <hr>
+                {!! $events->appends(request()->input())->links() !!}
+            <hr>
+            </div>
     </div>
 @endsection

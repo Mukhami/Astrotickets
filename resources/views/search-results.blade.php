@@ -23,6 +23,7 @@
         </div>
 
         <div class="container">
+
             <!-- Search field -->
             <div class="container align-content-center">
                 <hr>
@@ -34,7 +35,7 @@
             </div>
 
               <b> <h2> Search Results</h2>
-                  <p>{{ $events->count() }} Result(s) for '{{ request()->input('query') }}'</p></b>
+                  {{ $events->count() }} Result(s) for '{{ request()->input('query') }}'</b>
                <table class="table table-striped table-hover">
                    <thead>
                    <tr>

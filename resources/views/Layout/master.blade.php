@@ -35,6 +35,8 @@
     $('.sidenav').sidenav();
   });
 </script>
+
+<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 </head>
 <body class="grey lighten-3">
 @include('Layout.navbar')

@@ -10,10 +10,10 @@ use App\Category;
 use Session;
 
 class EventsController extends Controller
-{   //show events
+{   //show all events
     public function events()
     {
-        $events = Event::all();
+        $events = Event::orderBy('start_date', 'asc')->paginate(8);
         $categories= Category::limit(4)->get();      
         return view('index', compact('events','categories'));
     }
@@ -23,6 +23,7 @@ class EventsController extends Controller
         $event = Event::where('slug', '=', $slug)->firstOrFail();
         return view('event', compact('event'));
     }
+
     //browse events by category
     public function browsecategory($slug)
     {
@@ -30,6 +31,8 @@ class EventsController extends Controller
         $categories= Category::limit(4)->get();
         return view('browsecategory', compact('events','categories'));
     }
+
+    //search for event
     public function search(Request $request)
     {
         $query = $request->input('query');

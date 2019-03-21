@@ -44,7 +44,7 @@ h4{
 }
 
 a {
-  color: #c52d2f;
+  color: #7986CB;
   -webkit-transition: color 300ms, background-color 300ms;
   -moz-transition: color 300ms, background-color 300ms;
   -o-transition:  color 300ms, background-color 300ms;
@@ -52,7 +52,7 @@ a {
 }
 
 a:hover, a:focus {
-  color: #d43133;
+  color: #7986CB;
 }
 
 hr {
@@ -63,7 +63,7 @@ hr {
 
 .btn-primary {
   padding: 8px 20px;
-  background: #c52d2f;
+  background: #7986CB;
   color: #fff;
   border-radius: 4px;
   border:none;
@@ -73,7 +73,7 @@ hr {
 
 .btn-primary:hover, 
 .btn-primary:focus{
-  background: #c52d2f;
+  background: #7986CB;
   outline: none;
   box-shadow: none;
 } 
@@ -196,7 +196,7 @@ body > section {
 
 #main-slider .carousel .btn-slide {
   padding: 8px 20px;
-  background: #c52d2f;
+  background: #7986CB;
   color: #fff;
   border-radius: 4px;
   margin-top: 25px;
@@ -244,7 +244,7 @@ body > section {
 #main-slider .next {
   position: absolute;
   top: 50%;
-  background-color: #c52d2f;
+  background-color: #7986CB;
   color: #fff;
   display: inline-block;
   margin-top: -25px;
@@ -293,9 +293,9 @@ body > section {
 #main-slider .carousel-indicators .active{
   width: 20px;
   height: 20px;
-  background-color: #c52d2f;
+  background-color: #7986CB;
    margin: 0 15px 0 0;
-   border: 1px solid #c52d2f;
+   border: 1px solid #7986CB;
    position: relative;
 }
 
@@ -305,8 +305,8 @@ body > section {
   width: 24px;
   height: 24px;
   border-radius: 100%;
-  background: #c52d2f;
-  border: 1px solid #c52d2f;
+  background: #7986CB;
+  border: 1px solid #7986CB;
   left: -3px;
   top: -3px;
 }
@@ -374,7 +374,7 @@ body > section {
   line-height: 110px;
   text-align:center;
   background: #ffffff;
-  color: #c52d2f;
+  color: #7986CB;
   border: 3px solid #ffffff;
   box-shadow: inset 0 0 0 5px #f2f2f2;
   -webkit-box-shadow: inset 0 0 0 5px #f2f2f2;
@@ -387,11 +387,11 @@ body > section {
 }
 
 .feature-wrap i:hover {
-  background: #c52d2f;
+  background: #7986CB;
   color: #fff;
-  box-shadow: inset 0 0 0 5px #c52d2f;
-  -webkit-box-shadow: inset 0 0 0 5px #c52d2f;
-  border: 3px solid #c52d2f;
+  box-shadow: inset 0 0 0 5px #7986CB;
+  -webkit-box-shadow: inset 0 0 0 5px #7986CB;
+  border: 3px solid #7986CB;
 }
 
 #recent-works .col-xs-12.col-sm-4.col-md-3{
@@ -437,7 +437,7 @@ body > section {
   height: 100%;
   opacity: 0;
   border-radius: 0;
-  background: #c52d2f;
+  background: #7986CB;
   color: #fff;
   vertical-align: middle;
   -webkit-transition: opacity 500ms;
@@ -517,7 +517,7 @@ body > section {
 
 .progress .color4,
 .progress .color4 .bar-width{
-  background: #db3615;
+  background: #7986CB;
 }
 
 .progress, 
@@ -578,7 +578,7 @@ body > section {
 }
 
 .progress .color4 span:before{
-  border-color: #db3615 transparent transparent transparent;
+  border-color: #7986CB transparent transparent transparent;
 }
 
 .accordion h2{
@@ -649,12 +649,12 @@ a.accordion-toggle  i{
 }
 
 .panel-heading.active a.accordion-toggle i{
-  background: #c52d2f;
+  background: #7986CB;
   color: #fff;
 }
 
 .panel-heading.active a.accordion-toggle.collapsed i{
-  background: #c52d2f;
+  background: #7986CB;
   color: #fff;
 }
 
@@ -1066,7 +1066,7 @@ ul.social_icons li  a i{
 }
 
 .team .social_icons .fa-google-plus {
-  background: #D34836
+  background: #7986CB
 }
 
 
@@ -1124,8 +1124,8 @@ ul.social_icons li  a i{
 }
 
 .team-bar .fourth-arrow hr {
-  border-bottom: 1px solid #db3615;
-  border-top: 1px solid #db3615;
+  border-bottom: 1px solid #7986CB;
+  border-top: 1px solid #7986CB;
 }
 
 .team-bar {
@@ -1164,7 +1164,7 @@ ul.social_icons li  a i{
 }
 
 .team-bar .fourth-arrow .fa-angle-down {
-  background:#db3615;
+  background:#7986CB;
   margin-left: -32px;
 }
 
@@ -1257,7 +1257,7 @@ ul.social_icons li  a i{
 }
 
 .request h4 a{
-  background:#c52d2f;
+  background:#7986CB;
   color: #fff;
   font-size: 14px;
   font-weight: normal;
@@ -1266,7 +1266,7 @@ ul.social_icons li  a i{
 }
 
 .request h4:after {
-  border-color: #c52d2f transparent transparent;
+  border-color: #7986CB transparent transparent;
   border-style: solid;
   border-width: 12px;
   bottom: -18px;
@@ -1278,7 +1278,7 @@ ul.social_icons li  a i{
 }
 
 .request h4:before {
-  border-color: #c52d2f transparent transparent;
+  border-color: #7986CB transparent transparent;
   border-style: solid;
   border-width: 12px;
   bottom: -18px;
@@ -1331,7 +1331,7 @@ ul.social_icons li  a i{
 
 .footer {
   background: none repeat scroll 0 0 #2E2E2E;
-  border-top: 5px solid #C52D2F;
+  border-top: 5px solid #7986CB;
   height: 84px;
   margin-top: 110px;
 }
@@ -1384,8 +1384,8 @@ ul.social_icons li  a i{
 .portfolio-filter > li a:hover,
 .portfolio-filter > li a.active{
   color:#fff;
-  background: #c52d2f;
-  border: 1px solid #c52d2f;
+  background: #7986CB;
+  border: 1px solid #7986CB;
   box-shadow: none;
   -webkit-box-shadow: none;
 }
@@ -1813,12 +1813,12 @@ textarea#message{
 }
 
 .blog_category li a:hover{
-  background:#c52d2f;
+  background:#7986CB;
   color: #fff;
 }
 
  .badge:before {
-  border-color: transparent transparent transparent #c52d2f;
+  border-color: transparent transparent transparent #7986CB;
   border-style: solid;
   border-width: 10px;
   bottom: -8px;
@@ -1830,7 +1830,7 @@ textarea#message{
 }
 
 .badge {
-  background-color: #c52d2f;
+  background-color: #7986CB;
   border-radius: 5px;
   color: #fff;
   padding: 8px;
@@ -1974,7 +1974,7 @@ ul.faq li > div h3 {
 }
 
 #publish_date {
-  background: #c52d2f;
+  background: #7986CB;
   border-bottom: 5px solid #4e4e4e;
   color: #fff;
   padding: 5px 0;
@@ -2005,10 +2005,15 @@ ul.pagination > li > a i{
   margin-right:5px;
 }
 
-ul.pagination > li.active > a, 
+ul.pagination > li.active > a{
+  background-color: #7986CB !important;
+  border-color: #7986CB !important;
+  color: #fff;
+}
+
 ul.pagination > li:hover > a {
-  background-color: #c52d2f !important;
-  border-color: #c52d2f !important;
+  background-color: #7986CB !important;
+  border-color: #7986CB !important;
   color: #fff;
 }
 
@@ -2049,7 +2054,7 @@ ul.sidebar-gallery {
 }
 
 .tag-cloud li a:hover{
-  background:#c52d2f;
+  background:#7986CB;
   color: #fff;  
 }
 
@@ -2188,7 +2193,7 @@ ul.sidebar-gallery {
 }
 
 .post_reply_comments h1 a:hover{
-  color:#c52d2f;
+  color:#7986CB;
 }
 
 .post_reply_comments h4{
@@ -2204,14 +2209,14 @@ ul.sidebar-gallery {
   bottom: 15px;
   position: absolute;
   right: 30px;
-  background: #c52d2f;
+  background: #7986CB;
   color: #fff;
   border-radius: 5px;
   padding: 8px 20px;
 }
 
 .post_reply_comments a:before {
-  border-color: #c52d2f transparent transparent;
+  border-color: #7986CB transparent transparent;
   border-style: solid;
   border-width: 16px;
   bottom: -11px;
@@ -2275,7 +2280,7 @@ shortcodes page css
 ************************/
 #bottom {
   background: #1e90ff;
-  border-bottom: 5px solid #c52d2f;
+  border-bottom: 5px solid #7986CB;
   font-size: 14px;
 }
 
@@ -2303,7 +2308,7 @@ shortcodes page css
 }
 
 #bottom ul li a:hover {
-  color: #c52d2f;
+  color: #7986CB;
 }
 
 #bottom .widget {
@@ -2322,7 +2327,7 @@ shortcodes page css
 }
 
 #footer a:hover {
-  color: #c52d2f;
+  color: #7986CB;
 }
 
 #footer ul {

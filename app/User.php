@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,7 @@ class User extends \TCG\Voyager\Models\User
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'phone_number', 'password','token',
     ];
 
     /**
@@ -27,7 +28,33 @@ class User extends \TCG\Voyager\Models\User
         'password', 'remember_token',
     ];
 
-    public function ticket(){
+    /**
+     * Returns true if user is verified
+     * @return bool
+     */
+    public function verified()
+    {
+        return $this->token === null;
+    }
+
+
+    /**
+     * Send User Verification Email
+     * @return void
+     */
+
+    public function sendVerificationEmail()
+    {
+        $this->notify(new VerifyEmail($this));
+    }
+
+    public function ticket()
+    {
         return $this->hasMany('App\Ticket');
+    }
+
+    public function paypalpayment()
+    {
+        return $this->hasMany(PaypalPayment::class, 'user_id');
     }
 }

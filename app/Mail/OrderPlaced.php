@@ -14,20 +14,19 @@ class OrderPlaced extends Mailable
 {
     use Queueable, SerializesModels;
 
-
+    public $order;
+    public $user;
+    public $ticket;
     /**
      * Create a new message instance.
      *
      * @return void
      */
 
-    public function __construct()
+    public function __construct($order)
     {
-        $user_id=Auth::user()->id;
-        $user = User::where('id', '=', $user_id)->firstOrFail();
-        $tickets = Ticket::where('user_id', '=', $user_id)->get();
-        return view("emails.orders.placed", compact('user', 'tickets'));
-    }
+    $this->order = $order;
+        }
 
     /**
      * Build the message.
@@ -37,8 +36,8 @@ class OrderPlaced extends Mailable
 
     public function build()
     {
-        return $this->to('email@email.com', 'BUYER')
-                    ->subject('Your Purchased Ticket.')
-                    ->view('emails.orders.placed');
+        return $this->to($this->order->user->email, $this->order->user->name)
+                    ->subject('Your Purchased Ticket(s).')
+                    ->markdown('emails.orders.placed', compact('order', 'user'));
     }
 }

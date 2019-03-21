@@ -32,7 +32,7 @@ class Tickets extends BaseDimmer
                 'text' => 'Browse all Tickets',
                 'link' => route('voyager.tickets.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/06.jpg'),
+            'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
         ]));
     }
 
@@ -44,6 +44,6 @@ class Tickets extends BaseDimmer
      */
     public function shouldBeDisplayed()
     {
-        return Auth::user()->can('browse', Voyager::model('Post'));
+        return app('VoyagerAuth')->user()->can('browse', Voyager::model('Post'));
     }
 }

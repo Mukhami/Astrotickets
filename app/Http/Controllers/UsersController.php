@@ -13,7 +13,8 @@ class UsersController extends Controller
     {
         $user_id=Auth::user()->id;
         $user = User::where('id', '=', $user_id)->firstOrFail();
-        $tickets = Ticket::where('user_id', '=', $user_id)->get();
+        $tickets = Ticket::where('user_id', '=', $user_id)
+                            ->get();
         return view("user.index", compact('user', 'tickets'));
     }
     public function showedit($id)

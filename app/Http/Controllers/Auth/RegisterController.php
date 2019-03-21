@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\EmailVerification;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -51,6 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone_number' => 'required|string|max:12',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,10 +66,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user=  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
             'password' => Hash::make($data['password']),
+            'token' =>str_random(25),
         ]);
+            $user->sendVerificationEmail();
+            return $user;
     }
+
+
 }
