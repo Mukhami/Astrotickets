@@ -17,7 +17,12 @@ Route::get('events/category/{slug}', 'EventsController@browsecategory');//browse
 Route::get('event/{slug}', 'EventsController@event');//show single event
 Route::get('/contact', 'PagesController@contact');//shows Contact Us page
 Route::get('/checkout', 'PagesController@checkout');//shows checkout page
-Route::get('/reports', 'PagesController@reports');//shows reports page
+
+Route::group(['middleware'=>'auth'], function() {
+    Route::get('/reports', 'PagesController@reports');//shows reports page
+    Route::get('/sortreports', 'PagesController@sort');//shows sorted reports page
+});
+
 Route::get('/instructions', 'PagesController@instructions');//shows reports page
 
 Route::get('/verify/{token}', 'VerifyController@verify')->name('verify');//verify registered users
@@ -66,7 +71,8 @@ Route::get('status/{event_id}/{quantity}', 'PaymentController@getPaymentStatus')
 Route::get('user', 'UsersController@index');
 
 //Route for editing profile
-Route::get('user/{id}/edit', 'UsersController@showedit');
+Route::post('user/edit', 'UsersController@showedit')->name('edit');
+Route::post('update-info', 'UsersController@editinfo')->name('editinfo');
 
 //admin route
 Route::group(['prefix' => 'admin'], function () {

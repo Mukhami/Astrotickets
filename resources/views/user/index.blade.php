@@ -23,6 +23,11 @@
         <u><b><h2>MY PROFILE</h2></b></u><br>
             <b><p> Name: {!! $user->name !!}</p>
             <p> E-mail: {!! $user->email !!}</p></b>
+            <form action="{{ route('edit') }}" method="post">
+                @csrf()
+                <input name="id" type="hidden" value="{!! $user->id !!}">
+            <button class="indigo darken-2 waves-effect waves-light btn" data-toggle="tooltip" title="purchase ticket" ><b>EDIT</b></button></a>
+            </form>
         </div>
         <u><b><h2>MY TICKET PURCHASES</h2></b></u><br>
         <div>
@@ -41,10 +46,11 @@
         <tbody>
         @foreach($tickets as $ticket)
         <tr>
-            <td> {!! $ticket->created_at !!}</td>
+
+            <td> {!! \Carbon\Carbon::parse($ticket->created_at)->format('l d M Y') !!}</td>
             <td> {!! $ticket->ticket_id !!}</td>
             <td> {!! $ticket->event->name !!}</td>
-            <td> {!! $ticket->event->start_date !!}</td>
+            <td> {!! \Carbon\Carbon::parse($ticket->event->start_date)->format(' d M Y') !!}</td>
             <td> {!! $ticket->quantity !!}</td>
             <td> {!! $ticket->charges !!}</td>
           </tr>

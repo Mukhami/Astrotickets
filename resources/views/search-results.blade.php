@@ -53,7 +53,7 @@
                        <td><a href="/event/{{ $event->slug }}"> {{ $event->name }}</a></td>
                        <td>{!! str_limit($event->description, 50) !!}</td>
                        <td>{{ $event->guests }}</td>
-                       <td>{{ $event->start_date }}</td>
+                       <td>{{ \Carbon\Carbon::parse($event->start_date)->format('d M Y') }}</td>
                        <td>{{ $event->location }}</td>
                        <td>{{ $event->charges }}</td>
                    </tr>

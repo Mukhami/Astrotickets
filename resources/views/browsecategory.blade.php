@@ -13,10 +13,11 @@
             @if ($events->isEmpty())
                 <p><b> THERE ARE NO EVENTS LISTED.</b></p>
             @else
-                <p><b> THESE ARE THE EVENTS LISTED IN.</b></p>
-
+                <div class="text-center">
+                <p><b><h2> THESE ARE THE EVENTS LISTED IN {{ $cat->name }}</h2></b></p>
+                </div>
                 @foreach($events as $event)
-                    <div class="col s12 col m3">
+                    <div class="col s12 m6 l4 xl4">
                         <div class="card hoverable">
                             <div class="card-image">
                                 <a href="/event/{!! $event->slug !!}"><img class="responsive-img" src='{!! Voyager::image( $event->event_poster ) !!}' style="width: 100%; height: 30%"></a>
@@ -25,19 +26,16 @@
                                 @else <span class="label label-danger"> SOLD OUT!</span>
                                 @endif
 
-                                <form action="cart" method="POST">
-                                    {!! csrf_field() !!}
-                                    <input type="hidden" name="id" value="{{ $event->id}}">
-                                    <input type="hidden" name="name" value="{{ $event->name}}">
-                                    <input type="hidden" name="charges" value="{{ $event->charges}}">
-                                    @if($event->number_of_tickets > 0)
-                                        <button type="submit" class="halfway-fab btn-floating indigo pulse"><i class="far fa-bookmark"></i></button>
-                                    @endif
-                                </form>
+                                {{--bookmark event--}}
+                                <a href="{{route('bookmark',['id'=>$event->id])}}">
+                                    <button type="submit" class="halfway-fab btn-floating indigo darken-4 pulse" data-toggle="tooltip" title="add to bookmarks">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                </a>
 
                             </div>
                             <div align="centre">
-                                <span class="card-title">{!! $event->name !!}</span>
+                                <span class="card-title"><b>{!! $event->name !!}</b></span>
                             </div>
                             <div class="card-body">
                                 <ul>

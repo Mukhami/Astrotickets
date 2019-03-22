@@ -22,7 +22,7 @@
     <div class="footer-copyright">
         <div class="container">
             © 2018 Copyright, All Rights Reserved
-            <a class="grey-text text-lighten-4 right" href="#!">It's liiiiiiiiiiiiiit</a></b>
+            <b class="grey-text text-lighten-4 right" href="#!">It's liiiiiiiiiiiiiit</b></a>
         </div>
     </div>
 </footer>

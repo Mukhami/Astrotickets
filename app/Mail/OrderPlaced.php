@@ -38,6 +38,6 @@ class OrderPlaced extends Mailable
     {
         return $this->to($this->order->user->email, $this->order->user->name)
                     ->subject('Your Purchased Ticket(s).')
-                    ->markdown('emails.orders.placed', compact('order', 'user'));
+                    ->view('emails.orders.placed', compact('order', 'user'));
     }
 }

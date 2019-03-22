@@ -13,8 +13,8 @@ class EventsController extends Controller
 {   //show all events
     public function events()
     {
-        $events = Event::orderBy('start_date', 'asc')->paginate(8);
-        $categories= Category::limit(4)->get();      
+        $events = Event::orderBy('start_date', 'asc')->paginate(9);
+        $categories= Category::all();
         return view('index', compact('events','categories'));
     }
     //show single event
@@ -28,8 +28,9 @@ class EventsController extends Controller
     public function browsecategory($slug)
     {
         $events = Event::where('cat_id', '=', $slug)->get();
-        $categories= Category::limit(4)->get();
-        return view('browsecategory', compact('events','categories'));
+        $categories= Category::all();
+        $cat = Category::where('slug', '=',$slug)->first();
+        return view('browsecategory', compact('events','categories', 'cat'));
     }
 
     //search for event

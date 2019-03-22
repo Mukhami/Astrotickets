@@ -2,12 +2,12 @@
 @section('title', 'Edit Info')
 @section('content')
     <div class="container">
-        <div class="panel">
-            <div class="panel-heading" align="center">
-                <h5>Edit Info</h5>
+        <div class="panel hoverable">
+            <div class="panel-heading " align="center">
+                <h4>Edit Account Information</h4>
             </div>
             <div class="panel-body">
-                {!! Form::open(['url'=>'update-info']) !!}
+                {!! Form::open(['url'=>'update-info', 'method'=>'post']) !!}
                 @foreach ($errors->all() as $error)
                     <p class="alert alert-danger">{{ $error }}</p>
                 @endforeach
@@ -17,22 +17,22 @@
                     </div>
                 @endif
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                <input type="hidden" name="event_id" value=" {!! $user->id !!}">
+                <input type="hidden" name="id" value=" {!! $user->id !!}">
                 <fieldset>
                     <div class="form-group">
-                        {!! Form::Label('fname', 'First Name:') !!}
-                        {!! Form::text('fname', null, ['class'=>'form-control', 'required']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::Label('lname', 'Last Name:') !!}
-                        {!! Form::text('lname', null, ['class'=>'form-control', 'required']) !!}
+                        {!! Form::Label('name', 'Name:') !!}
+                        {!! Form::text('name', null, ['class'=>'form-control', 'required', 'placeholder'=>'Enter Your preferred Name']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::Label('email', 'Email:') !!}
-                        {!! Form::text('email', null, ['class'=>'form-control', 'required']) !!}
+                        {!! Form::text('email', null, ['class'=>'form-control', 'required', 'placeholder'=>'Enter Your preferred Email']) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Update', ['class'=>'waves-effect waves-light btn form-control']) !!}
+                        {!! Form::Label('phonenumber', 'Phone Number:') !!}
+                        {!! Form::text('phonenumber', null, ['class'=>'form-control', 'required', 'placeholder'=>'Enter Your preferred Phone Number']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::submit('Update', ['class'=>'waves-effect waves-light btn form-control indigo darken-2']) !!}
                     </div>
                 </fieldset>
                 {!! Form::close() !!}

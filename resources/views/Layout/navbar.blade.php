@@ -9,7 +9,7 @@ nav .badge{
 }
 </style>
 <div class="navbar-fixed">
-<nav class="indigo lighten-2">
+<nav class="indigo darken-2">
     <div class="nav-wrapper">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -25,15 +25,15 @@ nav .badge{
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="right">
                     <li>                     
-                        <li><a href="contact"  data-toggle="tooltip" title="contact us">CONTACT US</a></li>
+                    <li><a href="contact"  data-toggle="tooltip" title="contact us"><b>CONTACT US</b></a></li>
                     </li>
 
                     <!-- Authentication Links -->
                     @guest
                     <li>
-                        <a class="nav-link" href="{{ route('login') }}"  data-toggle="tooltip" title="login">{{ __('LOGIN') }}</a></li>
+                        <a class="nav-link" href="{{ route('login') }}"  data-toggle="tooltip" title="login"><b>{{ __('LOGIN') }}</b></a></li>
                     <li>
-                        <a class="nav-link" href="{{ route('register') }}"  data-toggle="tooltip" title="register">{{ __('REGISTER') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}"  data-toggle="tooltip" title="register"><b>{{ __('REGISTER') }}</b></a>
                     </li>
                     @else
                         <li>
@@ -55,7 +55,7 @@ nav .badge{
                         </li>
                         @endguest
 
-                    <li><a href="{{ route('bookmarks') }}" class="btn-floating indigo z-depth-0"  data-toggle="tooltip" title="view bookmarked events">
+                    <li><a href="{{ route('bookmarks') }}" class="btn-floating indigo darken-4 z-depth-0"  data-toggle="tooltip" title="view bookmarked events">
                             <i class="tiny material-icons">bookmark_border</i></a></li>
                 </ul>
             </div>

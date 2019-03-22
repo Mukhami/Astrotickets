@@ -17,10 +17,27 @@ class UsersController extends Controller
                             ->get();
         return view("user.index", compact('user', 'tickets'));
     }
-    public function showedit($id)
+    public function showedit(Request $request)
     {
-        $user = User::where('id', '=', $id)->firstOrFail();
+        $user_id = $request->get('id');
+        $user = User::where('id', '=', $user_id)->firstOrFail();
         return view("user.edit", compact('user'));
     }
 
+    public function editinfo(Request $request)
+    {
+        $user_id = $request->get('id');
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $phonenumber = $request->get('phonenumber');
+
+        $user = User::find($user_id);
+        $user->name = $name;
+        $user->email=$email;
+        $user->phone_number =$phonenumber;
+
+        $user->save();
+
+        return redirect('user')->with('status', 'Edit Success');
+    }
 }

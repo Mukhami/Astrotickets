@@ -51,14 +51,14 @@
 
             <!-- Lists Events-->
             @if ($events->isEmpty())
-                <div class="container">
+                <div class="container text-center">
                     <div class="col-xs-12 col-m6 col-l4">
-                         <p><b> There is no Event listed.</b></p>
+                        <p><b><h3> There is no Event listed.</h3></b></p>
                     </div>
                 </div>
             @else
                 @foreach($events as $event)
-                    <div class="col s12 m12 l3 xl3">
+                    <div class="col s12 m6 l4 xl4">
                         <div class="card hoverable">
                             <div class="card-image">
                                 <a href="/event/{!! $event->slug !!}"><img class="responsive-img" src='{!! Voyager::image( $event->event_poster ) !!}' style="width: 100%; height: 30%"></a>
@@ -67,19 +67,20 @@
                                 @else <span class="label label-danger"> SOLD OUT!</span>
                                 @endif 
 
-                               @if($event->number_of_tickets > 0) 
+                               @if($event->number_of_tickets > 0)
+
+                                   {{--bookmark event--}}
                                 <a href="{{route('bookmark',['id'=>$event->id])}}">
-                                    <button type="submit" class="halfway-fab btn-floating indigo pulse" data-toggle="tooltip" title="add to bookmarks">
+                                    <button type="submit" class="halfway-fab btn-floating indigo darken-4 pulse" data-toggle="tooltip" title="add to bookmarks">
                                         <i class="far fa-bookmark"></i>
                                     </button>
                                 </a>
                                 @endif
 
-
-
                             </div>
-                            <div align="centre"> 
-                            <span class="card-title">{!! $event->name !!}</span>
+                            <div align="centre">
+                                <br>
+                                <span class="card-title"><b>{!! $event->name !!}</b></span>
                             </div>
 
                             <div class="card-body">
@@ -91,7 +92,7 @@
                              </div>
                                 <div class="card-action">
                                 @if($event->number_of_tickets > 0)
-                                    <a href="/event/buytickets/{!! $event->slug !!}"><button class="indigo darken- waves-effect waves-light btn" data-toggle="tooltip" title="purchase ticket" >Purchase Ticket</button></a>
+                                        <a href="/event/buytickets/{!! $event->slug !!}"><button class="indigo darken-2 waves-effect waves-light btn" data-toggle="tooltip" title="purchase ticket" ><b>Purchase Ticket</b></button></a>
                                 @endif
                                 </div>
                             </div>

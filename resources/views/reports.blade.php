@@ -4,7 +4,7 @@
 <div class="container">
     <hr>
 
-    <form action="" method="post" novalidate="novalidate">
+    <form action="/sortreports" method="get" novalidate="novalidate">
         @csrf
         <div class="row">
             <div class="col-lg-12">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-lg-3 col-md-2 col-sm-12 p-0">
                         <select class="form-control search-slt" id="exampleFormControlSelect1" name="month">
-                            <option>All</option>
+                            <option>All Months</option>
                             <option>January</option>
                             <option>February </option>
                             <option>March</option>
@@ -44,28 +44,39 @@
     </form>
 
     <hr>
+
+    <div class="text-center">
+        <h4><b>SUMMARY FOR {!! $duration !!}</b><h4>
+    </div>
+    <hr>
+
 <table class="table table-striped table-hover">
         <thead>
           <tr>
               <th>TICKET ID</th>
               <th>EVENT NAME</th>
               <th>USER NAME</th>
+              <th>NO. OF TICKETS</th>
               <th>AMOUNT PAID</th>
               <th>DATE OF PURCHASE</th>
           </tr>
         </thead>
 
         <tbody>
-        <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-            <td>2019-09-09</td>
-          </tr>
+        @foreach($tickets as $ticket)
+            <tr>
+                <td> {!! $ticket->ticket_id !!}</td>
+
+                <td> {!! $ticket->eventname !!}</td>
+                <td> {!! $ticket->username !!}</td>
+                <td> {!! $ticket->quantity !!}</td>
+                <td> {!! $ticket->charges !!}</td>
+                <td> {!! \Carbon\Carbon::parse($ticket->created_at)->format('l d M Y') !!}</td>
+            </tr>
+        @endforeach
         </tbody>
-    <td colspan="1">Total Revenue:</td>
-    <td colspan="7" ></td>
+    <td colspan="2"><b>Total Revenue: ${!! $total !!}</b></td>
+    <td colspan="4" ></td>
 </table>
     <hr>
 </div>

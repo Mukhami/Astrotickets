@@ -48,14 +48,15 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('phone', 'Phone:') !!}
-                            <input type="text" name="email" value=" {!! $user->phone_number !!}">
+                            <input type="text" name="phone_number" value=" {!! $user->phone_number !!}">
                         </div>
                         <div class="form-group">
                             {!! Form::label('quantity', 'Number of Tickets:') !!}
                             {!! Form::number('quantity', null, ['class'=>'form-control', 'required', 'min=1', 'max=10']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::submit('Proceed To Pay', ['class'=>'waves-effect waves-light btn form-control indigo']) !!}
+                            <button class="indigo darken-2 waves-effect waves-light btn" data-toggle="tooltip" title="purchase ticket" ><b>Proceed To Pay</b></button>
+                            {{--{!! Form::submit('Proceed To Pay', ['class'=>'waves-effect waves-light btn form-control indigo darken-4']) !!}--}}
 
                         </div>
                     </fieldset>
