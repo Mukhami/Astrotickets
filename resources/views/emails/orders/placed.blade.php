@@ -8,13 +8,13 @@
     <title>Your Purchased Ticket</title>
 </head>
 <body>
-<p class="container-fluid">
+<div class="container-fluid">
 Dear {!! $order->user->name !!},
-<p><b>EVENT INFORMATION</b></p>
+<p><b><u>EVENT INFORMATION</u></b></p>
 <b><b></b>NAME: {!! $order->event->name !!}</b></p>
 <b><b></b>VENUE: {!! $order->event->location !!}</b></p>
-<b><b></b>FROM:{!! $order->event->start_date !!}, {!! $order->event->start_time !!}</b></p>
-<p><b>TILL: {!! $order->event->end_date !!}, {!! $order->event->end_time !!}</b></p>
+<b><b></b>FROM: {!! \Carbon\Carbon::parse($order->event->start_date)->format('d M Y') !!}, {!! $order->event->start_time !!}</b></p>
+<p><b>TILL: {!! \Carbon\Carbon::parse($order->event->end_date)->format('d M Y') !!}, {!! $order->event->end_time !!}</b></p>
 
 <p><b>Options on what to do with the ticket(s) attached below:</p>
 
@@ -24,7 +24,7 @@ Dear {!! $order->user->name !!},
 
     Here are your tickets</b>><br>
 
-<p><b>TICKET INFORMATION</b></p>
+<p><b><u>TICKET INFORMATION</u></b></p>
 <p><b>NUMBER OF TICKETS PURCHASED: {!! $order->quantity !!}</b></p>
 <p><b>AMOUNT PAID: {!! $order->charges !!}</b></p>
 
@@ -32,6 +32,8 @@ Dear {!! $order->user->name !!},
 <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->color(255,0,127)->size(200)->generate($order->ticket_id)) !!} ">
 <hr>
     <p>Thank you and have a lovely day.</p>
+    <p>ASTROTICKETS!</p>
+
 </div>
 </body>
 </html>

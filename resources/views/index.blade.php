@@ -2,8 +2,8 @@
 @section('title', 'AstroTickets')
 @section('content')
 
-
-    <div class="container"> <!-- Category section top of page -->
+    <!-- Category section top of page -->
+    <div class="container">
        <div class="col-xs-12 col-m6 col-l4">
            @include('categories')
             </div>

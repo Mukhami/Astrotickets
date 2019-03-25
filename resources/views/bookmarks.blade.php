@@ -27,10 +27,10 @@
                     <tbody>
                     @foreach($bookmarks as $bookmark)
                     <tr>
-                        <td><a href="/event/{{ $bookmark->event->slug }}">{!! $bookmark->event->name !!}</a></td>
-                        <td>{!! str_limit($bookmark->event->description, 50)!!}</td>
-                        <td>{!!  $bookmark->event->charges!!}</td>
-                        <td>{!! $bookmark->event->start_date!!}</td>
+                        <td><b><a href="/event/{{ $bookmark->event->slug }}">{!! $bookmark->event->name !!}</a></b></td>
+                        <td><b>{!! str_limit($bookmark->event->description, 50)!!}</b></td>
+                        <td><b>{!!  $bookmark->event->charges!!}</b></td>
+                        <td><b>{!! \Carbon\Carbon::parse($bookmark->event->start_date)->format('d M Y')!!}</b></td>
                         <td> <a href="{{ route('delete_bookmark', ['id'=>$bookmark->id]) }}" class="btn-floating indigo z-depth-0"  data-toggle="tooltip" title="remove">
                                 <i class="tiny material-icons">delete_forever</i></a> </td>
 
@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                     <div class="" align="centre">
-                        <a href="/" class="indigo darken- waves-effect waves-light btn">Buy more Tickets</a>
+                        <a href="/" class="indigo darken- waves-effect waves-light btn"><b>Add more Tickets</b></a>
                     </div>
                     <hr>
                 </div>

@@ -5,6 +5,7 @@ use App\Ticket;
 use App\UsersMetum;
 use App\PaypalPayment;
 use App\Mail\OrderPlaced;
+use Illuminate\Support\Facades\DB;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
@@ -12,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Gloudemans\Shoppingcart\Facades\Cart;
+
 
 /** All Paypal Details class **/
 use PayPal\Api\ItemList;
@@ -203,7 +204,7 @@ class PaymentController extends Controller
                 $order->save();
 
 
-            //save payment data to DB
+            //save PayPal payment data to DB
             $paymentdata=new PaypalPayment(array(
                 'user_id'=>$user_id,
                 'ticket_id'=>$ticket_id,
@@ -222,14 +223,20 @@ class PaymentController extends Controller
             //sends order email after successful ticket purchase
             Mail::send(new OrderPlaced($order));
 
+            //Decrements number of tickets with the number of tickets being purchased
+            DB::table('events')
+                ->where('id', '=', $event_id)
+                ->decrement('number_of_tickets', $quantity);
 
+            //Success Message
             Session::put('success', 'Payment made successfully, check registered email for purchased ticket(s)');
-            
+
+            //Returns to user page
             return Redirect::to('/user');
 
         }
-
-        \Session::put('error', 'Payment failed, Contact Admin for help');
+        //Error Message
+        Session::put('error', 'Payment failed, Contact Admin for help');
         return Redirect::to('/');
 
     }

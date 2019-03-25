@@ -39,11 +39,10 @@ class bookmarksController extends Controller
                 'user_id' => $user_id,
                 'event_id' => $id,
             ]);
-
             $bookmark->save();
-            return redirect()->back()->with('status', 'Event has been added to your bookmark');
+            return redirect()->back()->with('status', 'Event has been added to your bookmarks');
         }
-        return redirect()->back()->with('error', 'Event has already been added to your bookmark');
+        return redirect()->back()->with('error', 'Event already exists in your bookmarks');
     }
 
 

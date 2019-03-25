@@ -25,7 +25,7 @@ nav .badge{
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="right">
                     <li>                     
-                    <li><a href="contact"  data-toggle="tooltip" title="contact us"><b>CONTACT US</b></a></li>
+                    <li><a href="{{ route('contact') }}"  data-toggle="tooltip" title="contact us"><b>CONTACT US</b></a></li>
                     </li>
 
                     <!-- Authentication Links -->

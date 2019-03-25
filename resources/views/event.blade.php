@@ -33,9 +33,9 @@
                 <div class="card-body" align="center">
                     <u><b><h2>About Event</h2></b></u>
                     <p>{!! $event->description !!}</p>
-                    <u><b><h2>Organizer</h2></b></u>
-                    <h6>{!! $event->organizer !!}</h6>
-                    <p>{!! $event->organizer_description !!}</p>
+                    {{--<u><b><h2>Organizer</h2></b></u>--}}
+                    {{--<h6>{!! $event->organizer !!}</h6>--}}
+                    {{--<p>{!! $event->organizer_description !!}</p>--}}
                 </div>
             </div>
         </div>

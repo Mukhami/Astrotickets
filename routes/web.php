@@ -15,9 +15,16 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');//verif
 Route::get('/', 'EventsController@events')->name('events');//displays all events
 Route::get('events/category/{slug}', 'EventsController@browsecategory');//browse by category page
 Route::get('event/{slug}', 'EventsController@event');//show single event
-Route::get('/contact', 'PagesController@contact');//shows Contact Us page
+
+//Contact Us Form
+Route::get('contact', 'PagesController@contact')->name('contact');//shows Contact Us page
+Route::post('/contactmail', 'PagesController@contactmail')->name('contactmail');//shows Contact Us page
+
+
 Route::get('/checkout', 'PagesController@checkout');//shows checkout page
 
+
+//ADMIN REPORTS ROUTES!
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/reports', 'PagesController@reports');//shows reports page
     Route::get('/sortreports', 'PagesController@sort');//shows sorted reports page
@@ -67,6 +74,9 @@ Route::post('paypal', 'PaymentController@payWithpaypal');
 // route for check status of the payment
 Route::get('status/{event_id}/{quantity}', 'PaymentController@getPaymentStatus');
 
+
+
+//USER ROUTES!
 //route for viewing profile
 Route::get('user', 'UsersController@index');
 
@@ -74,11 +84,17 @@ Route::get('user', 'UsersController@index');
 Route::post('user/edit', 'UsersController@showedit')->name('edit');
 Route::post('update-info', 'UsersController@editinfo')->name('editinfo');
 
+//shows Report an issue page
+Route::post('user/cancelticket', 'UsersController@cancelticket')->name('cancelticket');
+Route::post('user/cancelticketmail', 'UsersController@cancelticketmail')->name('cancelticketmail');
+
+
+
 //admin route
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
 Auth::routes();
-
+//HOME-PAGE ROUTE
 Route::get('/home', 'HomeController@index')->name('home');

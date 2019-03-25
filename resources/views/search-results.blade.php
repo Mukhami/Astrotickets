@@ -17,12 +17,13 @@
                       <span onclick="this.parentElement.style.display='none'"
                            class="button-red">&times;</span>
                              <p>{!! $message !!}</p>
-                         </div>
+                           </div>
                          <?php Session::forget('error');?>
-                     @endif
+                         @endif
         </div>
 
         <div class="container">
+        <h2><b> Search Results</b></h2>
 
             <!-- Search field -->
             <div class="container align-content-center">
@@ -32,10 +33,9 @@
                     <input  type="'text" id="query" name="query" type="query" value="{{ request()->input('query') }}" style="height:40px; text-align: left; width:550px;" placeholder=" Search for an Event" required>
                 </form>
                 <hr>
+                <h2>{{ $events->count() }} Result(s) for '{{ request()->input('query') }}'</h2>
             </div>
 
-              <b> <h2> Search Results</h2>
-                  {{ $events->count() }} Result(s) for '{{ request()->input('query') }}'</b>
                <table class="table table-striped table-hover">
                    <thead>
                    <tr>
@@ -50,12 +50,12 @@
                    <tbody>
                    @foreach($events as $event)
                    <tr>
-                       <td><a href="/event/{{ $event->slug }}"> {{ $event->name }}</a></td>
-                       <td>{!! str_limit($event->description, 50) !!}</td>
-                       <td>{{ $event->guests }}</td>
-                       <td>{{ \Carbon\Carbon::parse($event->start_date)->format('d M Y') }}</td>
-                       <td>{{ $event->location }}</td>
-                       <td>{{ $event->charges }}</td>
+                       <td><b><a href="/event/{{ $event->slug }}"> {{ $event->name }}</a></b></td>
+                       <td><b>{!! str_limit($event->description, 50) !!}</b></td>
+                       <td><b>{{ $event->guests }}</b></td>
+                       <td><b>{{ \Carbon\Carbon::parse($event->start_date)->format('d M Y') }}</b></td>
+                       <td><b>{{ $event->location }}</b></td>
+                       <td><b>{{ $event->charges }}</b></td>
                    </tr>
                    @endforeach
                    </tbody>
