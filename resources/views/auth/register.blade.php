@@ -45,7 +45,7 @@
 
                             <div class="col-md-6">
 
-                                <input id="phone_number" type="tel" pattern="\d{4}[\-]\d{3}[\-]\d{3}" title="'Phone Number (Format: 0799-999-999)'" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number') }}" placeholder="Phone Number "  maxlength="13" required autofocus>
+                                <input id="phone_number" type="tel" pattern="\d{4}\d{3}\d{3}" title="'Phone Number (Format: 0712345678)'" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number') }}" placeholder="Phone Number "  maxlength="10" required autofocus>
 
                                 @if ($errors->has('phone_number'))
                                     <span class="invalid-feedback" role="alert">

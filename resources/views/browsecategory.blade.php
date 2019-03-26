@@ -41,7 +41,7 @@
                                 <ul>
                                     <li><i class="fas fa-map-marker-alt"></i><b> Location:</b> {!! $event->location !!}</li>
                                     <li><i class="fas fa-calendar-week"></i><b> Date :</b> {!! $event->start_date !!}</li>
-                                    <li><i class="fas fa-money-bill-wave"></i><b> Ticket Price:</b> Kshs.{!! $event->charges !!}</li>
+                                    <li><i class="fas fa-money-bill-wave"></i><b> Ticket Price:</b> $ {!! $event->charges !!}</li>
                                 </ul>
                                 <div class="card-action">
                                     @if($event->number_of_tickets > 0)

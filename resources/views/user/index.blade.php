@@ -10,7 +10,7 @@
             </div>
         @endif
 
-    @if ($message = Session::get('error'))
+        @if ($message = Session::get('error'))
         <div class="alert alert-danger">
         <span onclick="this.parentElement.style.display='none'"
               class="button-red">&times;</span>

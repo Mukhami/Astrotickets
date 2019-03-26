@@ -50,27 +50,38 @@ class PaymentController extends Controller
     }
     public function saveBillingData(Request $request)
     {
-        $user_id=$request->user()->id;
+    $user_id=$request->user()->id;
     $charges=(int)$request->get('charges');
     $quantity=(int)$request->get('quantity');
     $total=$charges*$quantity;
     $event_id=$request->get('event_id');
     $event_name=$request->get('event_name');
 
-        $users=new UsersMetum(array(
-            'user_id'=>$user_id,
-            'name' =>$request->get('name'),
-            'email'=>$request->get('email'),
-            'phone'=>$request->get('phone'),
-        ));
-        $users->save();
-        return redirect('/ticketpurchase')->with(['charges'=>$total, 'Event'=>$event_name, 'Event_id'=>$event_id, 'quantity'=>$quantity]);
+//    Checks whether there are enough tickets in the DB
+    $available_tickets = DB::table('events')->where('id', '=', $event_id)->first();
 
+        if($request->quantity > $available_tickets->number_of_tickets){
+            return back()->with('error', 'Sorry! The number of tickets entered exceeds those available');
+        }
+            else{
+                $users=new UsersMetum(array(
+                    'user_id'=>$user_id,
+                    'name' =>$request->get('name'),
+                    'email'=>$request->get('email'),
+                    'phone'=>$request->get('phone')
+                ));
+                $users->save();
+                 }
+        return redirect('/ticketpurchase')->with(['charges'=>$total, 'Event'=>$event_name, 'Event_id'=>$event_id, 'quantity'=>$quantity]);
     }
+
+
+
     public function index()
     {
         return view('paywithpaypal');
     }
+
     public function payWithpaypal(Request $request)
     {
 
@@ -232,7 +243,7 @@ class PaymentController extends Controller
             Session::put('success', 'Payment made successfully, check registered email for purchased ticket(s)');
 
             //Returns to user page
-            return Redirect::to('/user');
+            return Redirect::to('/user')->with('status', 'Payment made successfully, check registered email for purchased ticket(s)');
 
         }
         //Error Message
@@ -240,5 +251,4 @@ class PaymentController extends Controller
         return Redirect::to('/');
 
     }
-
 }

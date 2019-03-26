@@ -17,6 +17,11 @@
                                         <input type="text" name="event_id" value="{!! session('Event_id') !!}" hidden required readonly>
                                         <input type="text" name="quantity" value="{!! session('quantity') !!}" hidden required readonly>
                                     </div>
+                                        <div class="form-group">
+                                            <label for="name">
+                                                <b>Event Name:</b><input type="text" name="event" value="{!! session('Event') !!}" required readonly>
+                                            </label>
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="amount">
@@ -24,11 +29,6 @@
                                             </label>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="name">
-                                                <b>Event Name:</b><input type="text" name="event" value="{!! session('Event') !!}" required readonly>
-                                            </label>
-                                        </div>
                                     @endif
                                     <div class="form-group">
                                         {!! Form::submit('submit', ['class'=>'waves-effect waves-light btn form-control indigo']) !!}

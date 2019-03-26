@@ -3,6 +3,23 @@
 @section('content')
 
     <div class="container-fluid">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+            </div>
+        @endif
+
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger">
+        <span onclick="this.parentElement.style.display='none'"
+              class="button-red">&times;</span>
+                <p>{!! $message !!}</p>
+            </div>
+            <?php Session::forget('error');?>
+        @endif
+
         <div class="row">
             <div class="col-md-6 card" style="margin: 10px">
                 <div>
@@ -13,7 +30,7 @@
                     <p><b><i class="fas fa-map-marker-alt"></i> Event Venue:</b> {!! $event->location !!}</p>
                     <p><b><i class="fas fa-calendar-week"></i> Date:</b> {!! $event->start_date!!}</p>
                     <p><b><i class="far fa-clock"></i> Time:</b> {!! $event->start_time !!} to {!! $event->end_time !!}</p>
-                    <p><b><i class="fas fa-money-bill-wave"></i> Charges:</b> Kshs.{!! $event->charges !!} per Ticket</p>
+                    <p><b><i class="fas fa-money-bill-wave"></i> Charges:</b> $ {!! $event->charges !!} per Ticket</p>
                 </div>
             </div>
             <div class="card col m5 s12">

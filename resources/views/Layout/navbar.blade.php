@@ -19,7 +19,14 @@ nav .badge{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                  </button>
-                <a class="brand-logo" href="/" data-toggle="tooltip" title="Home"><i class="fas fa-user-astronaut white-text fa-2x"></i>ASTROTICKETS</a>
+                @auth
+                @if(auth()->user()->token == null)
+                    <a class="brand-logo" href="/" data-toggle="tooltip" title="Home"><i class="fas fa-user-astronaut white-text fa-2x"></i>ASTROTICKETS</a>
+                 @else
+                @endif
+                @else
+                    <a class="brand-logo" href="/" data-toggle="tooltip" title="Home"><i class="fas fa-user-astronaut white-text fa-2x"></i>ASTROTICKETS</a>
+                @endauth
             </div>
             <!-- Navbar Right -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
