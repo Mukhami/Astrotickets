@@ -16,13 +16,14 @@ Dear {!! $order->user->name !!},
 <b><b></b>FROM: {!! \Carbon\Carbon::parse($order->event->start_date)->format('d M Y') !!}, {!! $order->event->start_time !!}</b></p>
 <p><b>TILL: {!! \Carbon\Carbon::parse($order->event->end_date)->format('d M Y') !!}, {!! $order->event->end_time !!}</b></p>
 
-<p><b>Options on what to do with the ticket(s) attached below:</p>
+    <p><b>Options on what to do with the ticket(s) attached below:</b></p>
 
 <p>1. Present this ticket on your phone for validation of the QR Code (Tip: take a screenshot)</p>
 <p>2. Print this ticket and bring it with you (tip: not so good for the environment)</p>
 <p>3. DO NOT SHARE THE QR CODE</p>
 
-    Here are your tickets</b>><br>
+    Here are
+    your tickets</b>><br>
 
 <p><b><u>TICKET INFORMATION</u></b></p>
 <p><b>NUMBER OF TICKETS PURCHASED: {!! $order->quantity !!}</b></p>

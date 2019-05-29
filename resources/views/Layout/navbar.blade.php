@@ -1,13 +1,4 @@
-<?php 
-$itemscount=Cart::count(); //count of items stored in cart
-?>
-<style>
-nav .badge{
-    position: relative;
-    top: 25px;
-    left: -25px;
-}
-</style>
+
 <div class="navbar-fixed">
 <nav class="indigo darken-2">
     <div class="nav-wrapper">
@@ -64,6 +55,8 @@ nav .badge{
 
                     <li><a href="{{ route('bookmarks') }}" class="btn-floating indigo darken-4 z-depth-0"  data-toggle="tooltip" title="view bookmarked events">
                             <i class="tiny material-icons">bookmark_border</i></a></li>
+
+
                 </ul>
             </div>
         </div>

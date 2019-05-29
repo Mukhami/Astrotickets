@@ -61,7 +61,7 @@ class PaymentController extends Controller
     $available_tickets = DB::table('events')->where('id', '=', $event_id)->first();
 
         if($request->quantity > $available_tickets->number_of_tickets){
-            return back()->with('error', 'Sorry! The number of tickets entered exceeds those available');
+            return back()->with('error', 'Sorry! The number of tickets entered exceeds those available.');
         }
             else{
                 $users=new UsersMetum(array(
@@ -72,6 +72,7 @@ class PaymentController extends Controller
                 ));
                 $users->save();
                  }
+        // Loads Payment Confirmation page
         return redirect('/ticketpurchase')->with(['charges'=>$total, 'Event'=>$event_name, 'Event_id'=>$event_id, 'quantity'=>$quantity]);
     }
 
@@ -84,7 +85,7 @@ class PaymentController extends Controller
 
     public function payWithpaypal(Request $request)
     {
-
+// sets paypal credentials
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
         $event_id=$request->get('event_id');

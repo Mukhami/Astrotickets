@@ -25,6 +25,10 @@
                 <div>
                     <div class="card-image float-left">
                         <img src='{!! Voyager::image( $event->event_poster ) !!}' style="width: 100%; height: auto">
+                        @if($event->number_of_tickets > 10) <span class="label label-success">Available </span>
+                        @elseif($event->number_of_tickets < 10 && $event->number_of_tickets > 0) <span class="label label-warning">Running Out </span>
+                        @else <span class="label label-danger"> SOLD OUT!</span>
+                        @endif
                     </div>
                     <h2><b>{!! $event->name !!}</b></h2>
                     <p><b><i class="fas fa-map-marker-alt"></i> Event Venue:</b> {!! $event->location !!}</p>

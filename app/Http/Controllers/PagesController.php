@@ -207,7 +207,6 @@ class PagesController extends Controller
 
                 $ticketsremaining = DB::table('events')
                     ->where('events.name', 'like', '%' . $request->input('name') . '%')
-//                    ->orWhere('users.name', 'like', '%' . $request->input('name') . '%')
                     ->whereYear('events.created_at' , request('year'))
                     ->whereMonth('events.created_at' , $monthnumber )
                     ->sum('events.number_of_tickets');
